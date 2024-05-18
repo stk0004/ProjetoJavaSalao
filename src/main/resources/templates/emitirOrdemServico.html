@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Emitir Ordem de Servico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+    color: red;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+
+
+
+<h2>Nova Ordem de Servico</h2>
+
+
+<form action="#" th:action="@{/emitirOrdemServico}" th:object="${ordemServico}" method="post">
+    <select th:field="*{cliente}">
+        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+    </select>
+
+    <select th:field="*{servico}">
+        <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.tipo}"></option>
+    </select>
+
+    <select id="descricao" th:field="*{servico}">
+        <option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.descricao}" th:attr="data-valor=${servico.valor}"></option>
+    </select>
+
+    <input type="text" id="valor" readonly />
+
+    <select th:field="*{funcionario}">
+        <option th:each="funcionario : ${funcionarios}" th:value="${funcionario.id}" th:text="${funcionario.nome}"></option>
+    </select>
+
+    <button type="submit">Emitir Ordem de Servico</button>
+</form>
+<form id="deleteForm" th:action="@{/deleteOrdemServico}" method="post">
+    <table>
+        <tr>
+            <th>Selecionar</th>
+            <th>Cliente</th>
+            <th>Servico</th>
+            <th>Descricao</th>
+            <th>Valor</th>
+            <th>Funcionrio</th>
+            <th>Data de Emissao</th>
+            <th>Status</th>
+            <th>Forma de Pagamento</th>
+            <th>Ação</th>
+        </tr>
+        <tr th:each="ordemServico : ${ordensServico}">
+
+
+
+            <td><input type="checkbox" name="selectedIds" th:value="${ordemServico.id}"th:checked="${ordemServico.ordemPadrao}" /></td>
+            <td th:text="${ordemServico.cliente != null ? ordemServico.cliente.nome : 'Cliente desconhecido'}"></td>
+            <td th:text="${ordemServico.servico != null ? ordemServico.servico.tipo : 'Tipo desconhecido'}"></td>
+            <td th:text="${ordemServico.servico != null ? ordemServico.servico.descricao : 'Descrição desconhecida'}"></td>
+            <td th:text="${ordemServico.servico != null ? ordemServico.servico.valor : 'Valor desconhecido'}"></td>
+            <td th:text="${ordemServico.funcionario != null ? ordemServico.funcionario.nome : 'Funcionário desconhecido'}"></td>
+            <td th:text="${#dates.format(ordemServico.dataEmissaoAsDate, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${ordemServico.status != null ? ordemServico.status : 'Status desconhecido'}"></td>
+            <td th:text="${ordemServico.formaPagamento != null ? ordemServico.formaPagamento : 'Forma de pagamento desconhecida'}"></td>
+
+
+            <td>
+                <form th:action="@{/executarOrdemServico/{id}(id=${ordemServico.id})}" method="post">
+                    <select name="formaPagamento" onchange="substituirDropdownPorTexto(this)">
+                        <option value="">forma de pagamento</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Débito">Débito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="PIX">PIX</option>
+                    </select>
+                    <button type="submit">Executar</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Deletar selecionados" />
+</form>
+
+<script th:inline="javascript">
+    function substituirDropdownPorTexto(select) {
+        var valor = select.value;
+        select.remove();
+        select.parentNode.insertAdjacentHTML('beforeend', '<p>' + valor + '</p>');
+    }
+</script>
+
+<script th:inline="javascript">
+    function substituirDropdownPorTexto(select) {
+        var formaPagamento = select.value;
+        var descricaoOption = select.querySelector('option[value="' + formaPagamento + '"]');
+        var texto = descricaoOption.textContent;
+        var pElement = document.createElement('p');
+        pElement.textContent = texto;
+        select.parentNode.appendChild(pElement);
+    }
+
+</script>
+
+<script th:inline="javascript">
+    document.getElementById('descricao').addEventListener('change', function() {
+        var descricaoId = this.value;
+        var descricaoOption = this.querySelector('option[value="' + descricaoId + '"]');
+        var valor = descricaoOption.getAttribute('data-valor');
+        document.getElementById('valor').value = valor;
+    });
+</script>
+
+</body>
+</html>

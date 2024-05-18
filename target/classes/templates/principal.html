@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+    <style>
+        .Pagina-Principal {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .main-div {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            width: 600px;
+            margin: 0 auto;
+        }
+        .opcoes {
+            margin-top: 20px;
+        }
+        .opcoes button {
+            display: block;
+            width: 100%;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .opcoes button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="Pagina-Principal">
+    <div class="container">
+        <div class="main-div">
+            <h1>Bem-vindo(a)</h1>
+            <div class="opcoes">
+                <h2>Escolha uma opção:</h2>
+                <button onclick="window.location.href='/cliente/pessoa-fisica/cadastro'">Cadastro de Cliente Pessoa Física</button>
+                <button onclick="window.location.href='/cliente/pessoa-juridica/cadastro'">Cadastro de Cliente Pessoa Jurídica</button>
+                <button onclick="window.location.href='/servico/cadastro'">Cadastro de Serviço</button>
+                <button onclick="window.location.href='/funcionario/cadastro'">Cadastro de Funcionário</button>
+                <button onclick="window.location.href='/emitirOrdemServico'">Nova Ordem</button>
+                <button onclick="window.location.href='/buscarOrdensExecutadas'">Buscar Ordens Executadas</button> <!-- Botão para buscar as ordens executadas -->
+                <button onclick="window.location.href='/ordens-executadas'">Ordens Executadas</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

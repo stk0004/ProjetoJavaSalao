@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Funcionário</title>
+</head>
+<body>
+<h2>Cadastro de Funcionário</h2>
+
+<form action="/funcionario/salvar" method="post">
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome"><br>
+    <label for="cargo">Cargo:</label><br>
+    <select id="cargo" name="cargo">
+        <option value=""></option>
+        <option value="Cabelereiro(a)">Cabelereiro(a)</option>
+        <option value="Manicure">Manicure</option>
+        <option value="Depilador(a)">Depilador(a)</option>
+    </select><br><br>
+    <input type="submit" value="Salvar">
+</form>
+
+</body>
+</html>

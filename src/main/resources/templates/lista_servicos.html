@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Serviços</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .descricao {
+            width: 300px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<h2>Lista de Serviços</h2>
+<table>
+    <tr>
+        <th>Tipo de Serviço</th>
+        <th>Descrição</th>
+        <th>Tamanho do Cabelo</th>
+        <th>Valor</th>
+    </tr>
+    <tr th:each="servico : ${servicos}">
+        <td th:text="${servico.tipo}"></td>
+        <td class="descricao" th:text="${servico.descricao}"></td>
+        <td th:if="${servico.tipo == 'Cabelo'}" th:text="${servico.tamanhoCabelo}">-</td>
+        <td th:unless="${servico.tipo == 'Cabelo'}">-</td>
+        <td th:text="${servico.valor}"></td>
+    </tr>
+</table>
+</body>
+</html>

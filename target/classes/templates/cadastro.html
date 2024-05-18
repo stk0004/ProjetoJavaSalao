@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>
+
+        .form-control::placeholder {
+             font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-image: url('/static/images/9120021.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .main-div {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-voltar {
+            background-color: #17a2b8;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-voltar:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+<div class="main-div">
+    <h2>Cadastro de Usuário</h2>
+    <p>Insira os seguintes dados para realizar o cadastro.</p>
+    <div th:if="${mensagem != null}" style="color: red;">
+        <p th:text="${mensagem}"></p>
+    </div>
+    <form action="/usuario/salvar" method="post">
+        <div class="form-group">
+            <input type="text" id="username" name="username" class="form-control" placeholder="Insira um usuário">
+        </div>
+        <div class="form-group">
+            <input type="text" id="email" name="email" class="form-control" placeholder="Insira seu e-mail">
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Insira uma senha">
+        </div>
+        <input type="submit" value="Salvar" class="btn-primary">
+        <button type="button" class="btn-voltar" onclick="window.location.href='/login'">Voltar</button>
+    </form>
+</div>
+</body>
+</html>

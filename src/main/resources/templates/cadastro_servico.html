@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Serviço</title>
+</head>
+<body>
+<h2>Cadastro de Serviço</h2>
+<form action="/servico/salvar" method="post" id="formServico">
+    <label for="tipo">Tipo de Serviço:</label><br>
+    <select id="tipo" name="tipo">
+        <option value="">Selecione o Tipo de Serviço</option>
+        <option value="Cabelo">Cabelo</option>
+        <option value="Manicure">Manicure</option>
+        <option value="Depilação">Depilação</option>
+    </select><br>
+    <div id="divTamanhoCabelo" style="display: none;">
+        <label for="tamanhoCabelo">Tamanho do Cabelo:</label><br>
+        <select id="tamanhoCabelo" name="tamanhoCabelo">
+            <option value="">Selecione o Tamanho do Cabelo</option>
+            <option value="Curto">Curto</option>
+            <option value="Médio">Médio</option>
+            <option value="Longo">Longo</option>
+        </select><br>
+    </div>
+    <label for="descricao">Descrição:</label><br>
+    <input type="text" id="descricao" name="descricao"><br>
+    <label for="valor">Valor:</label><br>
+    <input type="text" id="valor" name="valor"><br><br>
+    <input type="submit" value="Salvar">
+</form>
+
+<script>
+    document.getElementById('tipo').addEventListener('change', function() {
+        var tipoServico = this.value;
+        var divTamanhoCabelo = document.getElementById('divTamanhoCabelo');
+        if (tipoServico === 'Cabelo') {
+            divTamanhoCabelo.style.display = 'block';
+        } else {
+            divTamanhoCabelo.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>

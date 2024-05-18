@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente Pessoa Jurídica</title>
+</head>
+<body>
+<h2>Cadastro de Cliente Pessoa Jurídica</h2>
+<form action="/cliente/pessoa-juridica/salvar" method="post">
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome"><br>
+    <label for="razaoSocial">Razão Social:</label><br>
+    <input type="text" id="razaoSocial" name="razaoSocial"><br>
+    <label for="cnpj">CNPJ:</label><br>
+    <input type="text" id="cnpj" name="cnpj"><br>
+    <label for="endereco">Endereço:</label><br>
+    <input type="text" id="endereco" name="endereco"><br>
+    <label for="telefone">Telefone:</label><br>
+    <input type="text" id="telefone" name="telefone"><br><br>
+    <input type="submit" value="Salvar">
+</form>
+</body>
+</html>

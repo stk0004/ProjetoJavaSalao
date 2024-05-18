@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+    <style>
+
+        .texto-header, .cadastro, .form-control, button {
+             font-family: 'Montserrat', sans-serif;
+        }
+
+        .Login-Form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main-div {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+}
+        .texto-header, .cadastro {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        body {
+            background-image: url('/static/images/9120021.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="Login-Form">
+    <div class="container">
+        <div class="main-div">
+            <div class="texto-header">
+                <h2>Login Admin</h2>
+                <p>Insira suas credenciais para efetuar o login no sistema.</p>
+            </div>
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Insira seu usuario" name="username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="Insira sua senha" name="password">
+                </div>
+                <div class="cadastro">
+                    <p>Não tem cadastro? <a href="/usuario/cadastro">Clique aqui!</a></p>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <button type="button" class="btn-info" onclick="window.location.href='/principal'">Voltar</button>
+            </form>
+            <div th:if="${mensagem}">
+                <p th:text="${mensagem}" style="color: red;"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
